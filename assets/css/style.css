@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+:root{
+    --pri-color: #e50914;
+    --pri-hover-color: rgb(193, 17, 25);
+    --sec-color: #212529;
+    --color-white: #fff;
+    --color-dark: #000;
+}
+.netflix-pri-Color{
+    background-color: var(--pri-color);
+    color: var(--color-white);
+}
+.netflix-pri-Color:hover{
+background-color:var(--pri-hover-color);
+    color: var(--color-white);
+}
+.netflix-sec-color{
+    background-color:var( --sec-color);
+    color:var(--color-white);
+}
+.netflix-sec-color:hover{
+    background-color: var(--color-dark);
+    color:var(--color-white);
+}
+/* background */
+.background{
+    position: fixed;
+    inset: 0;
+}
+.background img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+   filter: blur(3px); 
+}
+
+/* //logo */
+
+.logo{
+    display: inline-block;
+    width: 150px;
+}
+.logo img{
+    height: 100%;
+    width: 100% ;
+}
+/* movieCard */
+.movieCard{
+ background-color:rgba(0, 0, 0, 0.6);
+ color:var(--color-white);
+ overflow: hidden;
+ cursor: pointer;
+}
+.movieCard h3{
+height: 40px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.movieCard figure{
+    position: relative;
+    height: 300px;
+    overflow: hidden;   
+}
+.movieCard figure img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+ figcaption{
+    position: absolute;
+    top:30%;
+    left:0;
+    height:70%;
+    width:100%;
+    background-color: rgba(0,0,0,0.6);
+    transition: all 0.7s ease-in-out;
+    overflow-y: auto;
+     transform:translateY(300px);
+}
+.movieCard:hover  figcaption,
+.movieCard:focus  figcaption,
+.movieCard:active  figcaption{
+    transform: translateY(0);
+}
+
+.movieModel{
+    position: fixed;
+    top:20%;
+    left:25%;
+    width: 50%;
+    transform: translateY(-40%);
+    transition: all 0.7s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+.backdrop{
+    cursor: pointer;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.7s ease-in-out;
+}
+.movieModel.active,
+ .backdrop.active{
+    opacity: 1;
+    visibility: visible;
+}
+.movieModel.active{
+    transform: translateY(0);
+}
+.spinner{
+    position: fixed;
+    top:0;
+    left:0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

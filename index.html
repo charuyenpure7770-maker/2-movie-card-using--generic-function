@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Movie CRUD -2 (using generic function)</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="background">
+    <img src="./assets/images/background image.jpg" >
+    </div>
+    <div class="container">
+        <div class="row mt-5">
+         <div class="col-md-6">
+            <div class="">
+            <a href="index.html" class="logo"><img src="./assets/images/netflex image.svg" alt="netflix"></a>
+         </div>
+         </div>
+          <div class="col-md-6 text-right align-self-center">
+            <button class="btn btn-sm  netflix-pri-Color" id="AddMovie">Add Movie</button>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-5" id="movieContainer">
+            <!-- <div class="col-md-3">
+               
+                    <div class="card movieCard">
+                        <div class="card-header d-flex justify-content-between">
+                          <h3 class="m-0">Border 2</h3>
+                           <h4 class="m-0"> <span class="badge badge-success">4</span></h4>
+                        </div>
+                        <div class="card-body">
+                            <figure>
+                              <img src="data:image/jpeg;base64,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" alt="movieImage">  
+                                <figcaption>
+                                   <h3 class="m-0">Border-2</h3>
+                                   <p>Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.
+                                    Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.
+                                    Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.
+                                    Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.Lorem,nemo perferendis beatae possimus officia quod quia conseuuntur.
+                                   </p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                          <button class="btn btn-sm netflix-pri-Color">Edit</button>
+                          <button class="btn btn-sm netflix-sec-color">Delete</button>
+                        </div>
+                    </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="backdrop" id="backdrop"></div>
+    
+         <div class="movieModel" id="movieModel">
+            <form id="form">
+            <div class="card">
+               <div class="card-header d-flex justify-content-between">
+                   <h3 class="m-0">Add Movie Details</h3>
+                   <i class="fa-solid fa-xmark fa-2x" role="button" id="icon"></i>
+               </div>
+               <div class="card-body py-0">
+                  <label for="name">Movie Name:-</label>
+                  <input type="text" class="form-control" id="name" required>
+
+                  <label for="image">Movie Image:-</label>
+                  <input type="text" class="form-control" id="image" required>
+                    <div class="row">
+                        <div class="col-6">
+
+                   <label for="gnare">Genre:-</label>
+                   
+                  <select  class="form-control" id="gnare" required>
+                    <option value="" disabled>Select Genre</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="action">Action</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                  </select>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="image">Created At:-</label>
+                            <input type="date" class="form-control" id="createdAt" required>
+                        </div>
+                    </div>
+                  <label for="name">Description:-</label>
+                  <textarea name="" class="form-control" id="discription" rows="3" required></textarea>
+                   
+                  <label for="name">Rating:-</label>
+                  <select  class="form-control" id="rating" required>
+                     <option value=""selected disabled>Select Rating</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                  </select>
+               </div>
+               <div class="card-footer d-flex justify-content-between">
+                    <button type ="submit" class="btn btn-sm netflix-sec-color" id="addMovie">Add Movie</button>
+                    <button type ="button" class="btn btn-sm netflix-sec-color d-none" id="updateMovie">Update Movie</button>
+                    <button type ="button" class="btn btn-sm netflix-pri-Color" id="closeBtn">Close</button>
+                 </div>
+               </form>
+            </div>
+    </div>
+    <div class="spinner d-none" id="spinner">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="./assets/js/app.js"></script>
+</body>
+</html>
